@@ -11,3 +11,7 @@
 .mart{
     color: rgb(137, 46, 46);
 }
+.padding-y {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
