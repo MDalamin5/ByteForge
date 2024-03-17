@@ -19,3 +19,12 @@
   .input-area{
     width: 380px;
   }
+  .nav-header{
+    margin-bottom: 200px;
+  }
+ .detail-view-control{
+    
+    display: flex;
+    height: 400px;
+    width: 700px;
+ }
