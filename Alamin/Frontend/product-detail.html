@@ -62,16 +62,37 @@
 
       <!--Card for Product details-->
       <main>
-        <section class="container ">
-            <div class="detail-view-control">
-                <div class="img-con">
-                    <img src="images/bags/bag-1.png" alt="">
-                   </div>
-                   <div class="card-context">
-                    <h2>Card Title</h2>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, itaque?</p>
-                   </div>
+        <section class="card-container container">
+            <div class="card mb-3 d-flex">
+                <div>
+                    <img src="images/bags/bag-1.png" class="card-img-top" alt="...">
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <h5>Select The size</h5>
+                  <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                    <label class="btn btn-outline-primary" for="btnradio1">S</label>
+                  
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btnradio2">M</label>
+                  
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btnradio3">L</label>
+                  </div>
+                  <br><br>
+                  <button class="btn btn-warning">Add To Card</button>
+                  
+                </div>
             </div>
+        </section>
+        <section class="cus-review container">
+            <h1>Customer Review Section</h1>
+            <p>User Name</p>
+            <small>last 4 min ago</small>
+            <article><p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla velit nam dolores perspiciatis minima veritatis rerum amet nisi similique, adipisci corporis modi? Beatae voluptatem dolore at? Asperiores saepe odit dolor.</p></article>
         </section>
       </main>
 </body>

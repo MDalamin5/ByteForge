@@ -20,11 +20,12 @@
     width: 380px;
   }
   .nav-header{
-    margin-bottom: 200px;
+    margin-bottom: 100px;
   }
- .detail-view-control{
-    
-    display: flex;
-    height: 400px;
+ .card-container{
+    height: 500px;
     width: 700px;
+ }
+ .cus-review{
+    margin-top: 400px;
  }
