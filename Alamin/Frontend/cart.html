@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Page</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/fbf5046c0b.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+                <div class="container">
+                  <a class="navbar-brand" href="index.html">
+                    <b>
+                      <span class="logo">Hello<span class="mart">Mart</span> </span>
+                    </b>
+                  </a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      
+                      
+                      <li class="nav-item dropdown">
+                        <a class="btn btn-warning dropdown-toggle mx-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                         All Category
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">All Product</a></li>
+                          <li><a class="dropdown-item" href="#">Shirt</a></li>
+                          <li><a class="dropdown-item" href="#">Pant</a></li>
+                          <li><a class="dropdown-item" href="#shoes">Shoes</a></li>
+                          <li><a class="dropdown-item" href="#backpacks">Backpack</a></li>
+                          <li><a class="dropdown-item" href="#">Eletric Component</a></li>
+                          
+                        </ul>
+                      </li>
+                      <li class="nav-item">
+                        <li class="nav-item">
+                          <a class="btn btn-outline-primary"href="#">Store</a>
+                        </li>
+                      </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                      <input class="form-control me-3 input-area border border-info" type="search" placeholder="Search" aria-label="Search">
+                      <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                    <div class="navbar-nav nav-auth ms-2">
+                      <a class="nav-link  text-dark" aria-current="page" href="#">Login</a>
+                      <a class="nav-link text-dark" href="register.html">Signup</a>
+                      
+                      
+                    </div>
+                  </div>
+                </div>
+              </nav>
+        </nav>
+    </header>
+    <section class="section-content padding-y bg">
+        <div class="container">
+          <!-- ============================ COMPONENT 1 ================================= -->
+  
+          <div class="row">
+            <aside class="col-lg-9">
+              <div class="card">
+                <table class="table table-borderless table-shopping-cart">
+                  <thead class="text-muted">
+                    <tr class="small text-uppercase">
+                      <th scope="col">Product</th>
+                      <th scope="col" width="120">Quantity</th>
+                      <th scope="col" width="120">Price</th>
+                      <th scope="col" class="text-right" width="200"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <figure class="itemside align-items-center">
+                          <div class="aside">
+                            <img src="./images/bags/bag-1.png" class="cart-imgg img-sm"/>
+                          </div>
+                          <figcaption class="info">
+                            <a href="#" class="title text-dark"
+                              >Red bag and lal bags</a
+                            >
+                            <p class="text-muted small">
+                              Matrix: 25 Mpx <br />
+                              Brand: Bata
+                            </p>
+                          </figcaption>
+                        </figure>
+                      </td>
+                      <td>
+                        <!-- col.// -->
+                        <div class="col">
+                          <div class="input-group input-spinner">
+                            <div class="input-group-prepend">
+                              <button
+                                class="btn btn-light"
+                                type="button"
+                                id="button-plus"
+                              >
+                                <i class="fa fa-minus"></i>
+                              </button>
+                            </div>
+                            <input type="text" class="form-controll"  value="1"/>
+                            <div class="input-group-append">
+                              <button
+                                class="btn btn-light"
+                                type="button"
+                                id="button-minus"
+                              >
+                                <i class="fa fa-plus"></i>
+                              </button>
+                            </div>
+                          </div>
+                          <!-- input-group.// -->
+                        </div>
+                        <!-- col.// -->
+                      </td>
+                      <td>
+                        <div class="price-wrap">
+                          <var class="price">$1156.00</var>
+                          <small class="text-muted"> $315.20 each </small>
+                        </div>
+                        <!-- price-wrap .// -->
+                      </td>
+                      <td class="text-right">
+                        <a href="" class="btn btn-danger"> Remove</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <figure class="itemside align-items-center">
+                          <div class="aside">
+                            <img src="./images/shoes/shoe-1.png" class="img-sm cart-imgg" />
+                          </div>
+                          <figcaption class="info">
+                            <a href="#" class="title text-dark"
+                              >This is Barand New Shoes</a
+                            >
+                            <p class="text-muted small">
+                              Size: M <br />
+                              Brand: Puma
+                            </p>
+                          </figcaption>
+                        </figure>
+                      </td>
+                      <td>
+                        <!-- col.// -->
+                        <div class="col">
+                          <div class="input-group input-spinner">
+                            <div class="input-group-prepend">
+                              <button
+                                class="btn btn-light"
+                                type="button"
+                                id="button-plus"
+                              >
+                                <i class="fa fa-minus"></i>
+                              </button>
+                            </div>
+                            <input type="text" class="form-controll" value="1" />
+                            <div class="input-group-append">
+                              <button
+                                class="btn btn-light"
+                                type="button"
+                                id="button-minus"
+                              >
+                                <i class="fa fa-plus"></i>
+                              </button>
+                            </div>
+                          </div>
+                          <!-- input-group.// -->
+                        </div>
+                        <!-- col.// -->
+                      </td>
+                      <td>
+                        <div class="price-wrap">
+                          <var class="price">$149.97</var>
+                          <small class="text-muted"> $75.00 each </small>
+                        </div>
+                        <!-- price-wrap .// -->
+                      </td>
+                      <td class="text-right">
+                        <a href="" class="btn btn-danger"> Remove</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <figure class="itemside align-items-center">
+                          <div class="aside">
+                            <img src="./images/bags/bag-2.png" class="img-sm cart-imgg" />
+                          </div>
+                          <figcaption class="info">
+                            <a href="#" class="title text-dark"
+                              >This is another Shoes</a
+                            >
+                            <p class="small text-muted">
+                              Size: 4L <br />
+                              Brand: Bata
+                            </p>
+                          </figcaption>
+                        </figure>
+                      </td>
+                      <td>
+                        <!-- col.// -->
+                        <div class="col">
+                          <div class="input-group input-spinner">
+                            <div class="input-group-prepend">
+                              <button
+                                class="btn btn-light"
+                                type="button"
+                                id="button-plus"
+                              >
+                                <i class="fa fa-minus"></i>
+                              </button>
+                            </div>
+                            <input type="text" class="form-controll" value="1"/>
+                            <div class="input-group-append">
+                              <button
+                                class="btn btn-light"
+                                type="button"
+                                id="button-minus"
+                              >
+                                <i class="fa fa-plus"></i>
+                              </button>
+                            </div>
+                          </div>
+                          <!-- input-group.// -->
+                        </div>
+                        <!-- col.// -->
+                      </td>
+                      <td>
+                        <div class="price-wrap">
+                          <var class="price">$98.00</var>
+                          <small class="text-muted"> $578.00 each</small>
+                        </div>
+                        <!-- price-wrap .// -->
+                      </td>
+                      <td class="text-right">
+                        <a href="" class="btn btn-danger"> Remove</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- card.// -->
+            </aside>
+            <!-- col.// -->
+            <aside class="col-lg-3">
+              <div class="card">
+                <div class="card-body">
+                  <dl class="dlist-align">
+                    <dt>Total price:</dt>
+                    <dd class="text-right">$69.97</dd>
+                  </dl>
+                  <dl class="dlist-align">
+                    <dt>Tax:</dt>
+                    <dd class="text-right">$10.00</dd>
+                  </dl>
+                  <dl class="dlist-align">
+                    <dt>Total:</dt>
+                    <dd class="text-right text-dark b">
+                      <strong>$59.97</strong>
+                    </dd>
+                  </dl>
+                  <hr />
+                  <p class="text-center mb-3">
+                    <img src="./images/cart-img/payments.png" height="26" />
+                  </p>
+                  <a href="./place-order.html" class="btn btn-primary btn-block">
+                    Checkout
+                  </a>
+                  <a href="./index.html" class="btn btn-light btn-block"
+                    >Continue Shopping</a
+                  >
+                </div>
+                <!-- card-body.// -->
+              </div>
+              <!-- card.// -->
+            </aside>
+            <!-- col.// -->
+          </div>
+          <!-- row.// -->
+          <!-- ============================ COMPONENT 1 END .// ================================= -->
+        </div>
+        <!-- container .//  -->
+      </section>
+      <script src="js/bootstrap.bundle.min.js"></script>
+      
+</body>
+</html>

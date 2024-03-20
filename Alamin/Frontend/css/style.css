@@ -29,3 +29,42 @@
  .cus-review{
     margin-top: 400px;
  }
+ 
+ .cart-imgg{
+  height: 70px;
+  width: 70px;
+ }
+ .form-controll{
+  width: 20px;
+  border-color: rgb(0, 0, 0);
+  padding: 5px;
+  
+ }
+ dl[class=row] {
+  margin-bottom: 0;
+}
+[class*=dlist-] {
+  margin-bottom: 5px;
+}
+[class*=dlist-] dd {
+  margin-bottom: 0;
+}
+
+.dlist-inline dt, .dlist-inline dd {
+  display: inline-block;
+}
+
+.dlist-align {
+  display: flex;
+}
+.dlist-align dt {
+  width: 150px;
+  word-wrap: break-word;
+  font-weight: normal;
+}
+.dlist-align dd {
+  flex-grow: 1;
+}
+.section-content{
+  margin-top: 40px;
+}
