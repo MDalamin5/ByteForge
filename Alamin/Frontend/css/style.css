@@ -68,3 +68,7 @@
 .section-content{
   margin-top: 40px;
 }
+
+.widget-header{
+  padding: 10px;
+}
