@@ -9,6 +9,59 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+            <div class="container">
+              <a class="navbar-brand" href="index.html">
+                <b>
+                  <span class="logo">Hello<span class="mart">Mart</span> </span>
+                </b>
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  
+                  
+                  <li class="nav-item dropdown">
+                    <a class="btn btn-warning dropdown-toggle mx-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                     All Category
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">All Product</a></li>
+                      <li><a class="dropdown-item" href="#">Shirt</a></li>
+                      <li><a class="dropdown-item" href="#">Pant</a></li>
+                      <li><a class="dropdown-item" href="#shoes">Shoes</a></li>
+                      <li><a class="dropdown-item" href="#backpacks">Backpack</a></li>
+                      <li><a class="dropdown-item" href="#">Eletric Component</a></li>
+                      
+                    </ul>
+                  </li>
+                  <li class="nav-item">
+                    <li class="nav-item">
+                      <a class="btn btn-outline-primary"href="store.html">Store</a>
+                    </li>
+                  </li>
+                </ul>
+                <form class="d-flex" role="search">
+                  <input class="form-control me-3 input-area border border-info" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+                <div class="navbar-nav nav-auth ms-2">
+                  <a class="nav-link  text-dark" aria-current="page" href="#">Login</a>
+                  <a class="nav-link text-dark" href="register.html">Signup</a>
+                  <a href="./cart.html" class="widget-header">
+                    <div class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></div>
+                    
+                  </a>
+                  
+                  
+                </div>
+              </div>
+            </div>
+          </nav>
+    </header>
     <h1>Nav will be update later</h1>
     <section class="all-products container">
         <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -95,5 +148,12 @@
             </ul>
           </nav>
     </section>
+    <footer class="mt-5 text-center">
+        <small>
+          ©2024. Hello Mart. This footer section is updated later
+        </small>
+    </footer>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
