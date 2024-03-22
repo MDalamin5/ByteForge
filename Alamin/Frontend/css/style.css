@@ -72,3 +72,8 @@
 .widget-header{
   padding: 10px;
 }
+.pagination{
+  text-align: center;
+  justify-content: center;
+  margin-top: 10px;
+}
