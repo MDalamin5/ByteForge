@@ -39,5 +39,9 @@ def store(request, category_slug=None):
     context = {'products' : paged_product, 'categories' : categories}
     return render(request, 'store/store.html', context)
 
-def productDetail(request):
-    return render(request, 'store/product-detail.html')
+# Product Details View Function
+def productDetail(request, category_slug, product_slug):
+    single_product = Product.objects.get(slug = product_slug, category__slug = category_slug)
+    
+    print(single_product)
+    return render(request, 'store/product-detail.html', {'product' : single_product})
