@@ -25,7 +25,7 @@ def store(request, category_slug=None):
         
         # for i in paged_product:
         #     print(i)
-    print(paged_product.has_next(), paged_product.has_previous(), paged_product.previous_page_number, paged_product.next_page_number)
+    # print(paged_product.has_next(), paged_product.has_previous(), paged_product.previous_page_number, paged_product.next_page_number)
 
     
     """Paginator add using random blog
