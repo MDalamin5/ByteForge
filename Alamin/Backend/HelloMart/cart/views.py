@@ -9,7 +9,12 @@ def sessionID(request):
     return session_id
 
 def cart(request):
-    return render(request, 'cart/cart.html')
+    session_id = request.session.session_key
+    cartid = Cart.objects.get(cart_id = session_id)
+    # print('hellollllllll',cartid)
+    cart_items = CartItem.objects.filter(cart = cartid)
+    print(cart_items)
+    return render(request, 'cart/cart.html', {'cartItems' : cart_items})
 
 def add_to_cart(request, product_id):
     product = Product.objects.get(id = product_id)
