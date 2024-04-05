@@ -9,12 +9,20 @@ def sessionID(request):
     return session_id
 
 def cart(request):
-    session_id = request.session.session_key
-    cartid = Cart.objects.get(cart_id = session_id)
+    session_id = request.session.session_key # bring session id from browser
+    cartid = Cart.objects.get(cart_id = session_id) # cart model k bar kora anlm
     # print('hellollllllll',cartid)
-    cart_items = CartItem.objects.filter(cart = cartid)
-    print(cart_items)
-    return render(request, 'cart/cart.html', {'cartItems' : cart_items})
+    cart_id = Cart.objects.filter(cart_id = session_id).exists()
+    cart_items = None
+    if cart_id:
+        cart_items = CartItem.objects.filter(cart = cartid)
+        print(cart_items)
+    return render(request, 'cart/cart.html', {'cart_items' : cart_items})
+
+
+
+
+
 
 def add_to_cart(request, product_id):
     product = Product.objects.get(id = product_id)
@@ -41,7 +49,19 @@ def add_to_cart(request, product_id):
             cart_id = session_id
         )
         cart.save()
+        cart_id = Cart.objects.get(cart_id = session_id)
+        item = CartItem.objects.create(
+        product = product,
+        cart = cart_id,
+        quantity = 1,
+        )
+        item.save()
     
     
     
     return render(request, 'cart/cart.html')
+
+
+
+
+
