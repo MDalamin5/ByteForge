@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from store.models import Product
 from . models import Cart, CartItem
 
@@ -59,7 +59,19 @@ def add_to_cart(request, product_id):
     
     
     
-    return render(request, 'cart/cart.html')
+    return redirect('cart')
+
+
+def remove_cart(request, product_id):
+    print('helllllllllo',product_id)
+    product = Product.objects.get(id = product_id)
+    session_id = request.session.session_key
+    cartid = Cart.objects.get(cart_id = session_id)
+    cart_item = CartItem.objects.get(cart = cartid, product= product)
+    print(cart_item)
+    
+    return redirect('cart')
+    
 
 
 
