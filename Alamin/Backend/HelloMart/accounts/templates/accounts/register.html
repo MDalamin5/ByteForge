@@ -1,40 +1,54 @@
 {% extends "base.html" %}
 
 {% block body %}
+
 <section class="section-content padding-y">
   <!-- ============================ COMPONENT REGISTER   ================================= -->
   <div class="card mx-auto" style="max-width: 520px; margin-top: 40px">
     <article class="card-body">
       <header class="mb-4"><h4 class="card-title">Sign up</h4></header>
-      <form>
+      
+      <form method='post'>
+        {% csrf_token %}
+        <div class="form-group">
+          <label>User Name</label> <br>
+          {{form.username}}
+          
+        </div>
+
         <div class="form-row">
           <div class="col form-group">
             <label>First name</label>
-            <input type="text" class="form-control" placeholder="" />
+            {{form.first_name}}
           </div>
           <!-- form-group end.// -->
           <div class="col form-group">
             <label>Last name</label>
-            <input type="text" class="form-control" placeholder="" />
+            <br>
+            {{form.last_name}}
           </div>
           <!-- form-group end.// -->
         </div>
         <!-- form-row end.// -->
         <div class="form-group">
           <label>Email</label>
-          <input type="email" class="form-control" placeholder="" />
+          <br>
+          {{form.email}}
         </div>
         <!-- form-group end.// -->
 
         <div class="form-row">
           <div class="form-group col-md-6">
             <label>Create password</label>
-            <input class="form-control" type="password" />
+            <br>
+            {{form.password1}}
           </div>
+          
           <!-- form-group end.// -->
           <div class="form-group col-md-6">
             <label>Repeat password</label>
-            <input class="form-control" type="password" />
+            <br>
+            {{form.password2}}
           </div>
           <!-- form-group end.// -->
         </div>
@@ -53,4 +67,5 @@
   <br /><br />
   <!-- ============================ COMPONENT REGISTER  END.// ================================= -->
 </section>
+
 {% endblock body %}
