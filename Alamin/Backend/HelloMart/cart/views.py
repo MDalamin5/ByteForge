@@ -4,9 +4,10 @@ from . models import Cart, CartItem
 
 # Create your views here.
 
-def sessionID(request):
-    session_id = request.session.session_key
-    return session_id
+def get_create_session(request):
+    if not request.session.session_key:
+        request.session.create()
+    return request.session.session_key
 
 def cart(request):
     cart_items = None
@@ -38,11 +39,10 @@ def cart(request):
 def add_to_cart(request, product_id):
     product = Product.objects.get(id = product_id)
     # print(product)
-    session_id = request.session.session_key
-    cart_id = Cart.objects.filter(cart_id = session_id).exists()
-
-    if cart_id:
-        cart_item = CartItem.objects.filter(product=product).exists()
+    session_id = get_create_session(request)
+    
+    if request.user.is_authenticated: # if the user is login
+        cart_item = CartItem.objects.filter(product=product, user = request.user).exists()
         if cart_item:
             item = CartItem.objects.get(product=product)
             item.quantity += 1
@@ -53,20 +53,38 @@ def add_to_cart(request, product_id):
             product = product,
             cart = cart_id,
             quantity = 1,
+            user = request.user
             )
             item.save()
-    else:
-        cart = Cart.objects.create(
-            cart_id = session_id
-        )
-        cart.save()
-        cart_id = Cart.objects.get(cart_id = session_id)
-        item = CartItem.objects.create(
-        product = product,
-        cart = cart_id,
-        quantity = 1,
-        )
-        item.save()
+    else: # if the user in not login
+        cart_id = Cart.objects.filter(cart_id = session_id).exists()
+
+        if cart_id:
+            cart_item = CartItem.objects.filter(product=product).exists()
+            if cart_item:
+                item = CartItem.objects.get(product=product)
+                item.quantity += 1
+                item.save()
+            else:
+                cart_id = Cart.objects.get(cart_id = session_id)
+                item = CartItem.objects.create(
+                product = product,
+                cart = cart_id,
+                quantity = 1,
+                )
+                item.save()
+        else:
+            cart = Cart.objects.create(
+                cart_id = session_id
+            )
+            cart.save()
+            cart_id = Cart.objects.get(cart_id = session_id)
+            item = CartItem.objects.create(
+            product = product,
+            cart = cart_id,
+            quantity = 1,
+            )
+            item.save()
     
     
     
