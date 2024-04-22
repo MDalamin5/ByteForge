@@ -4,6 +4,11 @@ from . models import Cart, CartItem
 from django.db.models import Q
 
 # Create your views here.
+def _cart_id(request):
+    cart = request.session.session_key
+    if not cart:
+        cart = request.session.create()
+    return cart
 
 def get_create_session(request):
     if not request.session.session_key:
