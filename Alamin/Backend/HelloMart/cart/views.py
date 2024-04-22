@@ -96,8 +96,12 @@ def remove_cart_item(request, product_id):
     product = Product.objects.get(id = product_id)
     # session_id = request.session.session_key
     # cartid = Cart.objects.get(cart_id = session_id)
-    
-    cart_item = CartItem.objects.get(product = product, user = request.user)
+    if request.user.is_authenticated:
+        cart_item = CartItem.objects.get(product = product, user = request.user)
+    else:
+        session_id = request.session.session_key
+        cartid = Cart.objects.get(cart_id = session_id)
+        cart_item = CartItem.objects.get(product = product, cart_id = cartid)
     
     if cart_item.quantity > 1:
         cart_item.quantity -= 1
@@ -120,8 +124,50 @@ def remove_cart(request, product_id):
     # cartid = Cart.objects.get(cart_id = session_id)
     
     # cart_item = CartItem.objects.get(product = product, cart = cartid)
-    cart_item = CartItem.objects.get(product = product, user = request.user)
+    if request.user.is_authenticated:
+        cart_item = CartItem.objects.get(product = product, user = request.user)
+    else:
+        session_id = request.session.session_key
+        cartid = Cart.objects.get(cart_id = session_id)
+        cart_item = CartItem.objects.get(product = product, cart = cartid)
     cart_item.delete()
     
     return redirect('cart')
+
+
+
+def checkout(request):
+    print(request.POST)
+    cart_items = None
+    tax = 0
+    total = 0
+    grand_total = 0
+    
+    if request.user.is_authenticated:
+        cart_items = CartItem.objects.filter(user = request.user)
+        for item in cart_items:
+            total += item.product.price * item.quantity
+        tax = (total*2)/100
+    else:
+        session_id = get_create_session(request) # session id nea aslm
+        cartid = Cart.objects.get(cart_id = session_id)
+        cart_id = Cart.objects.filter(cart_id = session_id).exists() # ai session ala kono cart is exists or not in database
+        
+        if cart_id:
+            # cart_items = CartItem.objects.filter(cart__cart_id = session_id) # if you this line do not use 9 & 13 no line its work in single line
+            cart_items = CartItem.objects.filter(cart = cartid)
+            for item in cart_items:
+                total += item.product.price * item.quantity
+        tax = (total*2)/100
+        
+    grand_total = total + tax
+    
+    
+    
+    
+    return render(request, 'cart/place-order.html', {'cart_items' : cart_items, 'tax' : tax, 'grand_total' : grand_total, 'total' : total})
+    
+    
+    
+    
 
