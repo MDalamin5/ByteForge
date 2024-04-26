@@ -30,12 +30,13 @@ def cart(request):
         tax = (total*2)/100
     else:
         session_id = get_create_session(request) # session id nea aslm
-        cartid = Cart.objects.get(cart_id = session_id)
+        
+        # cartid = Cart.objects.get(cart_id = session_id)
         cart_id = Cart.objects.filter(cart_id = session_id).exists() # ai session ala kono cart is exists or not in database
         
         if cart_id:
-            # cart_items = CartItem.objects.filter(cart__cart_id = session_id) # if you this line do not use 9 & 13 no line its work in single line
-            cart_items = CartItem.objects.filter(cart = cartid)
+            cart_items = CartItem.objects.filter(cart__cart_id = session_id) # if you this line do not use 9 & 13 no line its work in single line
+            # cart_items = CartItem.objects.filter(cart = cartid)
             for item in cart_items:
                 total += item.product.price * item.quantity
         tax = (total*2)/100
@@ -69,7 +70,9 @@ def add_to_cart(request, product_id):
             item.save()
             
     else: # if the usr is not authenticated
+        print('hiiii')
         cart_id = Cart.objects.filter(cart_id = session_id).exists()
+        print('huuuuuu', cart_id)
         if cart_id: # have a cart not increase or decrease the cart-item
             cart_item = CartItem.objects.filter(product = product).exists()
             if cart_item:
