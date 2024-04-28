@@ -70,9 +70,9 @@ def add_to_cart(request, product_id):
             item.save()
             
     else: # if the usr is not authenticated
-        print('hiiii')
+        # print('hiiii')
         cart_id = Cart.objects.filter(cart_id = session_id).exists()
-        print('huuuuuu', cart_id)
+        # print('huuuuuu', cart_id)
         if cart_id: # have a cart not increase or decrease the cart-item
             cart_item = CartItem.objects.filter(product = product).exists()
             if cart_item:
@@ -120,7 +120,7 @@ def remove_cart_item(request, product_id):
     else:
         cart_item.delete()
     
-    print(cart_item)
+    # print(cart_item)
     
     
     return redirect('cart')

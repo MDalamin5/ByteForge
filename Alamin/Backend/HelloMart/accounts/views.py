@@ -15,7 +15,7 @@ def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            print(form.cleaned_data.get('first_name'))
+            # print(form.cleaned_data.get('first_name'))
             user = form.save()
             login(request, user)
             
