@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body %}
+<section class="section-conten padding-y bg">
+
+	<div class="container">
+		<div class="row">
+		<aside class="col-md-3">
+			<!--   SIDEBAR   -->
+			<ul class="list-group">
+                <a class="list-group-item " href="{% url 'profile' %}"> Dashboard </a>
+				<a class="list-group-item active" href="{% url 'my_order' %}"> My Order </a>
+				<a class="list-group-item" href="{% url 'edit_profile' %}"> Edit Profile </a>
+				<a class="list-group-item" href="{% url 'change_password' %}">Change Password </a>
+				<a class="list-group-item" href="{% url 'forgot_password' %}">Forgot Password </a>
+			</ul>
+			<br>
+			<a class="btn btn-light btn-block" href="#"> <i class="fa fa-power-off"></i> <span class="text">Log out</span> </a> 
+			<!--   SIDEBAR .//END   -->
+        </aside>
+	<main class="col-md-9">
+		<article class="card">
+		<header class="card-header">
+			<strong class="d-inline-block mr-3">Your order history</strong>
+
+		</header>
+		<div class="card-body">
+			<div class="row">
+			<div class="col-md-12">
+				<table class="table table-hover">
+				  <thead>
+				    <tr>
+				      <th scope="col">Order #</th>
+				      <th scope="col">Billing Name</th>
+				      <th scope="col">Phone</th>
+				      <th scope="col">Order Total</th>
+							<th scope="col">Date</th>
+				    </tr>
+				  </thead>
+
+                  
+				  <tbody>
+					
+				    <tr>
+				      <th scope="row"><a href="#">6123456789</a></th>
+				      <td>Nirob</td>
+				      <td>0171236547</td>
+				      <td>৳5000</td>
+							<td>16 December 2018</td>
+				    </tr>
+				
+
+				  </tbody>
+				</table>
+         
+			</div>
+
+            <h6>Full Details</h6>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <tr>
+                        <td width="65">
+                            <img src="{% static "images/items/1.jpg" %}" class="img-xs border">
+                        </td>
+                        <td> 
+                            <p class="title mb-0">Blue Polo Shirt</p>
+                            <var class="price text-muted">৳1000</var>
+                        </td>
+                        <td> Shirt <br> </td>
+                        <td width="250"> <a href="#" class="btn btn-outline-primary">Track order</a> <a href="#" class="btn btn-light"> Details </a> </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="{% static "images/items/12-1.jpg" %}" class="img-xs border">
+                        </td>
+                        <td> 
+                            <p class="title mb-0">Shoes </p>
+                            <var class="price text-muted">৳2000</var>
+                        </td>
+                        <td> Shoes <br> </td>
+                        <td> <a href="#" class="btn btn-outline-primary">Track order</a> <a href="#" class="btn btn-light"> Details </a> </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="{% static "images/items/4.jpg" %}" class="img-xs border">
+                        </td>
+                        <td> 
+                            <p class="title mb-0">Blue Bag</p>
+                            <var class="price text-muted">৳2000</var>
+                        </td>
+                        <td> Accesories <br> </td>
+                        <td> <a href="#" class="btn btn-outline-primary">Track order</a> <a href="#" class="btn btn-light"> Details </a> </td>
+                    </tr>
+                </table>
+                </div> <!-- table-responsive .end// -->
+
+                <!-- payment.starts// -->
+                <div class="col-md-4">
+                    <h6 class="text-muted">Payment</h6>
+                    <span class="text-success">
+                        <i class="fab fa-lg fa-cc-visa"></i>
+                        Visa  **** 4216  
+                    </span>
+                    <p>Subtotal: ৳5000 <br>
+                     Shipping fee:  ৳80 <br> 
+                     <span class="b">Total:  ৳5800</span>
+                    </p>
+                </div><!-- payment .end// -->
+
+			</div> <!-- row.// -->
+		</div> <!-- card-body .// -->
+
+		</article> <!-- order-group.// -->
+	</main>
+
+    
+</div> <!-- row.// -->
+
+
+
+</div>
+
+
+</section>
+
+{% endblock %}

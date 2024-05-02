@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body %}
+<section class="section-conten padding-y bg">
+
+	<div class="container">
+		<div class="row">
+		<aside class="col-md-3">
+			<!--   SIDEBAR   -->
+			<ul class="list-group">
+				<a class="list-group-item " href="{% url 'profile' %}"> Dashboard </a>
+				<a class="list-group-item" href="{% url 'my_order' %}"> My Order </a>
+				<a class="list-group-item active " href="{% url 'edit_profile' %}"> Edit Profile </a>
+				<a class="list-group-item" href="{% url 'change_password' %}">Change Password </a>
+				<a class="list-group-item" href="{% url 'forgot_password' %}">Forgot Password </a>
+			</ul>
+			<br>
+			<a class="btn btn-light btn-block" href="#"> <i class="fa fa-power-off"></i> <span class="text">Log out</span> </a> 
+			<!--   SIDEBAR .//END   -->
+        </aside>
+	<main class="col-md-9">
+		<article class="card">
+		<header class="card-header">
+			<strong class="d-inline-block mr-3">Edit your profile</strong>
+
+		</header>
+		<div class="card-body">
+			<div class="text-right">
+				<img src="{% static "images/avatars/avatar3.jpg" %}"  alt="Profile Picture" width="100" style="border-radius:50px;">
+			</div>
+			<div class="row">
+			<div class="col-md-12">
+				<form action="{% url 'edit_profile' %}" method="POST" enctype="multipart/form-data">
+					{% csrf_token %}
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label>First Name</label>
+							<input type= "text" class="form-control" name=""id="">
+						</div>
+						<div class="form-group col-md-6">
+							<label>Last Name</label>
+                            <input type= "text" class="form-control" name=""id="">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label>Phone Number</label>
+                            <input type= "text" class="form-control" name=""id="">
+						</div>
+						<div class="form-group col-md-6">
+							<label>Profile Picture</label>
+                            <input type= "file" class="form-control" name=""id="">
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Address Line 1</label>
+                        <input type= "text" class="form-control" name=""id="">
+					</div>
+					<div class="form-group">
+						<label>Address Line 2</label>
+                        <input type= "text" class="form-control" name=""id="">
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-4">
+							<label>City</label>
+							<input type= "text" class="form-control" name=""id="">
+						</div>
+						<div class="form-group col-md-4">
+							<label>State</label>
+                            <input type= "text" class="form-control" name=""id="">
+						</div>
+						<div class="form-group col-md-4">
+							<label>Country</label>
+                            <input type= "text" class="form-control" name=""id="">
+						</div>
+					</div>
+					<input type="submit" value="Save" class="btn btn-primary">
+				</form>
+			</div>
+
+			</div> <!-- row.// -->
+		</div> <!-- card-body .// -->
+
+		</article> <!-- order-group.// -->
+	</main>
+</div> <!-- row.// -->
+</div>
+
+
+</section>
+
+{% endblock %}

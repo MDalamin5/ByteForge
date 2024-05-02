@@ -54,3 +54,14 @@ def profile(request):
     return render(request, 'accounts/dashboard.html')
 
 
+def my_order(request):
+    return render(request, 'accounts/my_order.html')
+
+def edit_profile(request):
+    return render(request, 'accounts/edit_profile.html')
+
+def change_password(request):
+    return render(request, 'accounts/change_password.html')
+
+def forgot_password(request):
+    return render(request, 'accounts/forgot_password.html')

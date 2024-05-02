@@ -14,13 +14,14 @@ def store(request, category_slug=None):
         products = Product.objects.filter(is_available = True, category = category)
         page = request.GET.get('page')
         print(page)
-        paginator = Paginator(products, 1)
+        paginator = Paginator(products, 2)
         paged_product = paginator.get_page(page)
+        
         
     else:
         products = Product.objects.filter(is_available = True)
         page = request.GET.get('page')
-        paginator = Paginator(products, 2)
+        paginator = Paginator(products, 6)
         paged_product = paginator.get_page(page)
         
         # for i in paged_product:
