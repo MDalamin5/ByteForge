@@ -72,10 +72,15 @@
 			</div>
 		</div> <!-- row.// -->
 		<hr>
+			{% if product.stock <= 0 %}
+			<h5 class = "text-danger">OUT OF STOCK</h5>
+			{% else %}
+		
 		<form method="post">
 			{% csrf_token %}
 			<a href="{% url "add_cart" product.id %}" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a>
 		</form>
+		{% endif %}
 	</article> <!-- product-info-aside .// -->
 			</main> <!-- col.// -->
 		</div> <!-- row.// -->
