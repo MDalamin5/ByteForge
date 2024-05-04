@@ -22,30 +22,34 @@
 		<main class="col-md-9">
 			<article class="card">
 			<header class="card-header">
-				<strong class="d-inline-block mr-3">Order ID: 6123456789</strong>
-				<span>Order Date: 16 December 2018</span>
+				<strong class="d-inline-block mr-3">Logged in as: <span>{{request.user.first_name}}</span></strong>
+				
+				<strong class="d-inline-block mr-3"> Order ID: {{request.session.session_key}}</strong>
+
+				<span>Order Date: {{request.user.last_login}}</span>
 			</header>
+
+
 			<div class="card-body">
 				<div class="row"> 
-					<div class="col-md-8">
-						<h6 class="text-muted">Delivery to</h6>
-						<p>Md Al Amin <br>  
-						Phone +1234567890 Email: hello@pixsellz.com <br>
-						Location: Home number, Building name, Street 123,  Tashkent, UZB <br> 
-						P.O. Box: 100123
-						 </p>
+					<div class="col-md-6">
+				<div class="card" style="text-align:center;">
+					<div class="card-body">
+						<h5 class="card-title">Total Orders</h5>
+						<h4>5</h4>
+						<a href="{% url 'my_order' %}">View Orders</a>
 					</div>
-					<div class="col-md-4">
-						<h6 class="text-muted">Payment ways</h6>
-						<span class="text-success">
-							<i class="fab fa-lg fa-cc-visa"></i>
-							Visa  **** 4216  
-						</span>
-						<p>Subtotal: $356 <br>
-						</p> Shipping fee:  $56 <br> 
-						 <span class="b">Total:  $456 </span>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="card" style="text-align:center;">
+					<div class="card-body">
+						<img src="{{request.userprofile.profile_picture.url}}" alt="User Profile Picture" width="50" height="50" style="border-radius:50%;">
+						<p class="mb-0">{{request.user.email}}</p>
 						
 					</div>
+				</div>
+			</div>
 				</div> <!-- row.// -->
 			</div> <!-- card-body .// -->
 			
