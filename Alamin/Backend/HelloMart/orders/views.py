@@ -1,6 +1,14 @@
 from django.shortcuts import render, redirect
 from cart.models import Cart, CartItem
-from . forms import OrderForm
+from .forms import OrderForm
+from .ssl import sslcommerz_payment_gateway
+from .models import Payment, OrderProduct, Order
+from store.models import Product
+# Create your views here.
+from .ssl import sslcommerz_payment_gateway
+from django.contrib.auth.models import User
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 
 # Create your views here.
 
@@ -16,35 +24,78 @@ def orderComplete(request):
     return render(request, 'orders/order_complete.html')
 
 
+@csrf_exempt
+def success_view(request):
+    data = request.POST
+    print(data)
+    
+    user_id = int(data['value_b'])  # Retrieve the stored user ID as an integer
+    user = User.objects.get(pk=user_id)
+    payment = Payment(
+        user = user,
+        payment_id =data['tran_id'],
+        payment_method = data['card_issuer'],
+        amount_paid = int(data['store_amount'][0]),
+        status =data['status'],
+    )
+    payment.save()
+    
+    # working with order model
+    order = Order.objects.get(user=user, is_ordered=False, order_number=data['value_a'])
+    order.payment = payment
+    order.is_ordered = True
+    order.save()
+    cart_items = CartItem.objects.filter(user = user)
+    
+    for item in cart_items:
+        orderproduct = OrderProduct()
+        product = Product.objects.get(id=item.product.id)
+        orderproduct.order = order
+        orderproduct.payment = payment
+        orderproduct.user = user
+        orderproduct.product = product
+        orderproduct.quantity = item.quantity
+        orderproduct.ordered = True
+        orderproduct.save()
+
+        # Reduce the quantity of the sold products
+        
+        product.stock -= item.quantity # order complete tai stock theke quantity komay dilam
+        product.save()
+
+    # Clear cart
+    CartItem.objects.filter(user=user).delete()
+    return redirect('cart')
+    
+
+
+
+
+@csrf_exempt
+def failed_view(request):
+    data = request.POST
+    print(data)
+    # Handle the failed transaction here, e.g., display an error message to the user
+    return redirect('store')  # Redirect the user to the cart page or any other appropriate page
+
 def place_order(request):
-    print(request.POST)
+    # print(request.POST)
     cart_items = None
     tax = 0
     total = 0
     grand_total = 0
+    # 1 --- 100
+    # 5 --- 100*5
+    cart_items = CartItem.objects.filter(user = request.user)
     
-    if request.user.is_authenticated:
-        cart_items = CartItem.objects.filter(user = request.user)
-        if cart_items.count() < 1:
-            return redirect('store')
-        for item in cart_items:
-            total += item.product.price * item.quantity
-        tax = (total*2)/100
-    """else:
-        session_id = get_create_session(request) # session id nea aslm
-        cartid = Cart.objects.get(cart_id = session_id)
-        cart_id = Cart.objects.filter(cart_id = session_id).exists() # ai session ala kono cart is exists or not in database
-        
-        if cart_id:
-            # cart_items = CartItem.objects.filter(cart__cart_id = session_id) # if you this line do not use 9 & 13 no line its work in single line
-            cart_items = CartItem.objects.filter(cart = cartid)
-            for item in cart_items:
-                total += item.product.price * item.quantity
-        tax = (total*2)/100"""
-        
+    if cart_items.count() < 1:
+        return redirect('store')
+    
+    for item in cart_items:
+        total += item.product.price * item.quantity
+    print(cart_items)  
+    tax = (2*total)/100 # 2 % vat
     grand_total = total + tax
-    
-    
     if request.method == 'POST':
         form = OrderForm(request.POST)
         if form.is_valid():
@@ -52,10 +103,14 @@ def place_order(request):
             form.instance.order_total = grand_total
             form.instance.tax = tax
             form.instance.ip = request.META.get('REMOTE_ADDR')
-            # form.instance.payment = 2
+            form.instance.payment = 2
             saved_instance = form.save()  # Save the form data to the database
             form.instance.order_number = saved_instance.id
             
-            form.save()   
-            # print('form data printing', form)
-    return render(request, 'orders/place-order.html', {'cart_items' : cart_items, 'tax' : tax, 'grand_total' : grand_total, 'total' : total})
+            form.save()
+            print('form print', form)
+            return redirect(sslcommerz_payment_gateway(request, saved_instance.id, str(request.user.id), grand_total))
+
+    return render(request, 'orders/place-order.html',{'cart_items' : cart_items, 'tax' : tax,'total' : total, 'grand_total' : grand_total})
+
+
