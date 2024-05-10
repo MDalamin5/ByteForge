@@ -65,7 +65,7 @@ def success_view(request):
 
     # Clear cart
     CartItem.objects.filter(user=user).delete()
-    return redirect('cart')
+    return redirect('order_complete')
     
 
 
