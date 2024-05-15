@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from . forms import RegistrationForm
 from django.contrib.auth import login, logout, authenticate
 from cart.models import Cart, CartItem
-
+from orders.models import Order, OrderProduct
 # Create your views here.
 
 def get_create_session(request):
@@ -51,11 +51,23 @@ def user_logout(request):
     return redirect('login')
 
 def profile(request):
-    return render(request, 'accounts/dashboard.html')
+    orders = Order.objects.order_by('-created_at').filter(user_id=request.user.id, is_ordered=True)
+    orders_count = orders.count()
+   
+    context = {
+        'orders_count': orders_count,
+    }
+    return render(request, 'accounts/dashboard.html',context)
 
 
 def my_order(request):
-    return render(request, 'accounts/my_order.html')
+    
+    orders = Order.objects.filter(user=request.user, is_ordered=True).order_by('-created_at')
+    context = {
+        'orders': orders,
+    }
+    
+    return render(request, 'accounts/my_order.html', context)
 
 def edit_profile(request):
     return render(request, 'accounts/edit_profile.html')

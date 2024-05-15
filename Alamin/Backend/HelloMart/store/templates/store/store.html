@@ -73,7 +73,8 @@
 							<del class="price-old">৳1980</del>
 						</div> <!-- price-wrap.// -->
 					</div>
-					<a href="#" class="btn btn-block btn-success">Added to cart </a>
+					<a href="{% url "product_detail" item.category.slug item.slug %}" class="btn btn-block btn-primary">View Details </a>
+					<!-- img-wrap<a href="#" class="btn btn-block btn-success">Added to cart </a>.// -->
 				</figcaption>
 			</figure>
 		</div> 
